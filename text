@@ -1,8 +1,8 @@
-vobu-website/  
-├── index.html          # Главная страница  
-├── css/  
-│   └── style.css       # Общие стили  
-├── js/  
-│   └── script.js       # Логика отправки в Telegram  
-└── images/  
-    └── logo.png        # Логотип  
+/ (корень)
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── script.js
+└── images/
+    └── logo.png
