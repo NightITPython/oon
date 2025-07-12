@@ -31,7 +31,7 @@ newFormBtn.addEventListener('click', () => {
 
 // Функция отправки данных
 async function sendData(formData) {
-    const response = await fetch('http://ваш-сайт.com/server.php', {
+    const response = await fetch('parserr06@gmail.com', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formData)
