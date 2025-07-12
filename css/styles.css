@@ -5,96 +5,54 @@
     --green: #4CAF50;
     --dark-green: #388E3C;
     --light-gray: #f5f5f5;
-    --error-red: #e74c3c;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    background-color: var(--light-gray);
-    color: #333;
-}
-
-/* Шапка */
-header {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
-    color: white;
-    padding: 1.5rem 1rem;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.logo-corner {
-    position: absolute;
-    top: 15px;
-    left: 25px;
-    height: 50px;
-    border-radius: 8px;
-}
-
-/* Формы */
-.login-form {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    max-width: 600px;
-    margin: 2rem auto;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    color: var(--primary-blue);
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
+/* Градиентный фон */
+.background-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
+    height: 100%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    z-index: -1;
 }
 
-/* Кнопки */
+/* Анимированные кнопки */
 .btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 50px;
     font-weight: bold;
+    text-align: center;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
     border: none;
-}
-
-.btn-primary {
-    background: var(--primary-blue);
     color: white;
+    margin: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.btn-success {
-    background: var(--green);
-    color: white;
+.btn-gradient-primary {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
 }
 
-.btn-back {
-    background: #ccc;
-    color: #333;
+.btn-gradient-success {
+    background: linear-gradient(135deg, var(--green) 0%, var(--dark-green) 100%);
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .logo-corner {
-        height: 40px;
-        left: 15px;
-    }
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn span {
+    position: relative;
+    z-index: 1;
 }
