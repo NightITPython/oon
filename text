@@ -1,8 +1,5 @@
 vobu-website/  
 ├── index.html          # Главная страница  
-├── bank-login.html     # Форма входа в банк  
-├── inventory-card.html # Форма инвентарной карты  
-├── success.html        # Страница успешной отправки  
 ├── css/  
 │   └── style.css       # Общие стили  
 ├── js/  
